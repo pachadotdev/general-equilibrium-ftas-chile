@@ -1,0 +1,227 @@
+---
+title: "[DRAFT, NOT PEER-REVIEWED] The Impact of Regional Trade Agreements: The Hypothetical Scenario of Removing Free Trade Agreements Chile-USA and Chile-China"
+author: "Mauricio Vargas Sepulveda"
+date: '2022-07-19'
+output: pdf_document
+header-includes:
+   - \usepackage[type={CC}, modifier={by-nc-sa}, version={4.0}]{doclicense}
+   - \usepackage{sansmath}
+   - \renewcommand{\familydefault}{\sfdefault}
+   - \sansmath
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\doclicenseThis
+
+# Abstract
+
+## Purpose
+
+The purpose of this post is to offer the author's view about the benefits of subscribing Trade Agreements such as TPP-11. 
+
+## Approach
+
+This article is based on a counterfactual simulation of a 'what if' scenario where the Chile-China and Chile-USA FTAs never existed and how that political situation would have affected Chile's exports and GDP.
+
+## Findings
+
+The article shows two estimation methods that reveal the positive effect of the FTAs on the Chilean economy compared to a counterfactual scenario of no FTAs.
+
+# Introduction
+
+This work proposes an econometric experiment to investigate the general equilibrium effects of Regional Trade Agreements (FTAs), particularly the effects of the Chile-China and Chile-USA FTAs. The main reference for the steps discussed here is Yotov, Piermartini and Larch (2016).
+
+The choice of these agreements is because China and the USA are the No. 1 and No. 2 trading partners with Chile, according to the most recent United Nations trade data for 2021 (United Nations, 2022).
+ 
+Focusing on these FTAs, whose effects are misunderstood in public opinion, primarily due to extreme political positions in Latin America, aims to measure the observed effects of trade on Chile's GDP.
+
+This econometric experiment relies on panel data to identify the effects of FTAs and capture the impact of trade costs by using paired fixed effects (Yotov, Piermartini and Larch, 2016). The application implements a two-stage procedure (Anderson and Yotov, 2016) to recover missing bilateral trade costs.
+
+This work proposes a solution to a General Equilibrium problem, which considers the interaction of different market forces similar to the case of multiple degrees of freedom spring-mass-damper system (Mas-Colell, Whinston and Green, 1995). The essential ingredient to solve this system is the Poisson Pseudo Maximum Likelihood estimation (PPML) (Silva and Tenreyro, 2006), implemented as a constrained regression with an external trade cost vector.
+
+# Estimating the Impact of FTAs
+
+The analysis begins by specifying the following panel version of the empirical gravity model in order to obtain estimates of bilateral trade costs, including an estimate of the average effects of all FTAs (Yotov, Piermartini and Larch, 2016):
+
+$$
+X_{ij,t} = \exp\left[\beta_1 FTA_{ij,t} + \pi_{i,t} + \chi_{j,t} + \mu_{ij}\right] \times \varepsilon_{ij,t}. \quad (1)
+$$
+
+Where $FTA_{ij,t}$ is an indicator variable equal to one if two countries are members of the same FTA at year $t$, and zero otherwise.
+
+Following the recommendations in Yotov, Piermartini and Larch (2016), this specification is estimated with the PPML estimator using panel data with exporter-time fixed effects ($\pi_{i,t}$) and importer-time fixed effects ($\chi_{j,t}$). 
+
+Pair fixed effects ($\mu_{ij}$) are included to alleviate potential endogeneity concerns of the FTA variable and to control for time-invariant trade costs at the bilateral level.
+
+Here we evaluate the hypothetical scenario of removing FTAs after they entered into force in 2004 (USA) and 2007 (China).
+
+## Step I: Solve the baseline gravity model
+
+The first step of the GEPPML procedure requires estimating the baseline gravity model $(1)$ to obtain point estimates of the effect of FTAs and the pair fixed effects and constructing the bilateral trade costs matrix required to compute the baseline indexes of interest. 
+
+It may be essential to construct the complete matrix of bilateral trade costs in order to perform sound counterfactual analysis, but it's often not possible to identify the complete set of pair fixed effects estimates in the gravity model when trade flows data are missing (or zero) for a given pair of countries in the period under investigation. 
+
+Following Anderson and Yotov (2016), the two-stage procedure is implemented in order to recover the complete set of bilateral trade costs.
+
+We keep the panel dimension of the dataset to identify the effects of FTAs and comprehensively capture the impact of all time-invariant trade costs with the use of pair fixed effects (Vargas 2021).
+
+### Stage 1: Obtain the estimates of pair fixed effects and the effects of FTAs
+
+For estimation purposes, the panel shall contain the years 2004 to 2019 in intervals of three years.
+
+The first stage consists of estimating equation $(1)$ in order to obtain the estimates of the bilateral fixed effects for country-pairs with non-missing (or non-zero) trade flows:
+
+$$
+X_{ij,t} = \exp\left[0.41 FTA_{ij,t} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t} + \hat{\mu}_{ij}\right]. \quad (2)
+$$
+The estimate of $\beta_1$ implies that, on average, the FTAs have led to about $[\exp(\hat{\beta_1}) - 1] \times 100 = [\exp(0.41 - 1] \times 100 \approx 51$ percent increase in trade among members, whose associated standard error equal to 0.09.
+
+### Stage 2: Regress the estimates of pair fixed effects on gravity variables and country fixed effects
+
+The second stage involves using the estimates of the pair fixed effects ($\mu_{ij}$) from equation $(2)$ as the dependent variable in a regression where the covariates include the set of standard gravity variables along with importer and exporter fixed effects (Larch and Yotov, 2016):
+
+$$
+t_{ij}^{1-\sigma} = \exp[\mu_{ij}] = \exp\left[\beta_1 DIST_{ij} + \beta_2 CNTG_{ij} + \beta_3 LANG_{ij} + \beta_3 CLNY_{ij} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t}\right]. \quad (3)
+$$
+The predictions from regression $(3)$ are used to fill in the missing trade cost values in order
+to obtain the complete set of bilateral trade costs $\hat{t}_{ij}^{1-\sigma}$.
+
+Once the full vector of bilateral trade costs is obtained, we include it as a constraint in the baseline gravity specification $(2)$, which will return estimates for the importer and exporter fixed effects. The result is consistent with the trade cost vector and can be used to recover the corresponding values of the multilateral resistances. 
+
+A similar constrained estimation procedure should be performed when the trade cost vector is obtained externally, including when it is constructed with a calibration method.
+
+## Step II: Define a counterfactual scenario
+
+The second step of the GEPPML procedure requires defining the hypothetical removal of the USA and China FTAs with Chile. By re-defining the FTA dummy variable, $FTA^{CFL}_{ij,t}$, as if FTAs were not in place by setting the original FTA indicator variable to be equal to zero for trade between Chile and the USA after 2004 and Chile and China after 2007.
+
+## Step III: Solve the counterfactual model
+
+The third stage of the GEPPML procedure consists of constructing the counterfactual indexes of interest in the Conditional GE and the Full Endowment GE scenarios of removing the abovementioned FTAs.
+
+The Conditional GE effects from the removal of the FTAs above are computed by re-estimating the econometric gravity specification $(1)$ for 2004 and 2007, the year of entry into force of the agreements, subject to constraints reflecting the counterfactual scenario:
+
+$$
+X_{ij} = \exp\left[\hat{\beta}_1 FTA^{CFL}_{ij} + \pi^{CFL}_{i} + \chi^{CFL}_{j} + \hat{t}^{1-\sigma}_{ij}\right]\times \varepsilon^{CFL}_{ij}. \quad (4)
+$$
+Equation $(4)$ is estimated under the constraints that the Chile-USA and Chile-China FTAs never existed ($FTA^{CFL}_{ij}$) and the coefficient of the FTA dummy and the bilateral fixed effects are equal to their baseline values, $\hat{\beta}_1$ and $\hat{t}^{1-\sigma}_{ij}$ respectively, such that no part of the trade costs besides the FTA dummy changes.
+
+The PPML estimates of the directional effects from equation $(4)$ can be used to recover the conditional multilateral resistance indexes $\pi^{CFL}_{i}$ and $\chi^{CFL}_{j}$ subject to normalization.
+
+The values of the Full Endowment GE effects of the removal of the FTAs are directly obtained by implementing an iterative procedure, which sequentially allows for endogenous factory-gate prices, followed by income, expenditure and trade to adjust to the counterfactual shock.
+
+## Step IV: Collect, construct, and report indexes of interest
+
+Table 1 reports the results of the counterfactual analysis, including the percentage difference between the baseline values and their Full Endowment counterparts of the main variables of interest for each
+country in the sample.
+
+# Simulation results 
+
+Despite some specifications and data limitations, the results presented and discussed above are comparable with findings from existing related studies.
+
+**Table 1: Conditional GE (CGE) and Full Endownment GE (FGE) simulation results**
+
+| Exporter| CGE \newline $\%\Delta$ Trade  | FGE \newline $\%\Delta$ Trade | FGE \newline $\%\Delta$ rGDP | FGE \newline $\%\Delta$ IMR  | FGE \newline $\%\Delta$ OMR  | FGE \newline $\%\Delta$ rGDP |
+|:--------|-------------:|--------------:|----------------:|---------------:|---------------:|---------------:|
+|0-deu    |          0.00|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|arg      |         -0.10|          -0.07|            -0.01|            0.02|           -0.02|            0.01|
+|aus      |         -0.02|          -0.02|             0.00|            0.00|            0.00|            0.00|
+|aut      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|bel      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|bgr      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|bol      |         -0.39|          -0.31|            -0.01|            0.07|           -0.06|            0.05|
+|bra      |         -0.05|          -0.04|             0.00|            0.01|           -0.01|            0.01|
+|can      |         -0.02|          -0.03|             0.00|           -0.01|            0.01|           -0.01|
+|che      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|**chl**  |      **9.30**|       **9.87**|         **0.55**|       **-0.06**|       **-0.57**|        **0.49**|
+|**chn**  |      **0.09**|       **0.10**|         **0.00**|        **0.00**|       **-0.01**|        **0.01**|
+|cmr      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|col      |         -0.07|          -0.06|             0.00|            0.01|           -0.01|            0.01|
+|cri      |         -0.03|          -0.03|             0.00|            0.00|            0.00|            0.00|
+|cyp      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|dnk      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|ecu      |         -0.13|          -0.10|             0.00|            0.02|           -0.02|            0.02|
+|egy      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|esp      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|fin      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|fra      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|gbr      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|grc      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|hkg      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|hun      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|idn      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|ind      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|irl      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|irn      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|isl      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|isr      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|ita      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|jor      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|jpn      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|ken      |          0.00|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|kor      |         -0.02|          -0.02|             0.00|            0.00|            0.00|            0.00|
+|kwt      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|lka      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|mac      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|mar      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|mex      |         -0.02|          -0.03|             0.00|            0.00|            0.01|           -0.01|
+|mlt      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|mmr      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|mus      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|mwi      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|mys      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|ner      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|nga      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|nld      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|nor      |          0.00|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|npl      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|pan      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|phl      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|pol      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|prt      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|qat      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|rom      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|sen      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|sgp      |          0.00|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|swe      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|tha      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|tto      |         -0.01|          -0.02|             0.00|           -0.01|            0.01|           -0.01|
+|tun      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|tur      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+|tza      |          0.00|           0.00|             0.00|            0.00|            0.00|            0.00|
+|ury      |         -0.06|          -0.04|             0.00|            0.01|           -0.01|            0.01|
+|**usa**  |      **0.24**|       **0.23**|         **0.01**|       **-0.01**|        **0.01**|       **-0.01**|
+|zaf      |         -0.01|          -0.01|             0.00|            0.00|            0.00|            0.00|
+
+# Concluding remarks
+
+Column I of Table 1 reveals that, under the conditional general equilibrium scenario, the member countries of the FTAs above experience the largest export increase, ranging from $0.09$ (China) to $9.30$ (Chile), percent of their total exports. Conditional effects, unlike direct (or partial) effects, account for trade diversion and direct effects are often an upper bound for our estimation (Yotov, Piermartini and Larch, 2016). Part of the increase in trade with member countries comes at the expense of trade with non-members because of fixed productive factors in the short run. Trade diversion also explains why the Conditional GE effects on non-FTA countries' exports are adverse, albeit small (less than 0.5 percent for all countries). Non-member countries facing the most significant conditional decrease in exports appear to be geographically close to the three economies, while the countries experiencing the most negligible conditional effect tend to be countries with weak trade ties, at least to Chile, China and the USA.
+
+Column II of Table 1 reveals that the values of the Full Endowment general equilibrium effects of the FTAs above on exports are qualitatively identical to the corresponding conditional equilibrium effects, despite some quantitative differences. First, the Full Endowment GE effects on the FTA members are slightly larger (i.e. $9.87\%$ versus $9.30\%$ for Chile) suggesting that part of the decrease in bilateral trade costs due to the creation of the FTAs translates into additional gains for the producers in the member countries who enjoy higher producer prices. In most cases, the increase in the size of FTA members mitigates the adverse effects on non-members' exports.
+
+Column III of Table 1, the counterfactual analysis, suggests that the Full Endowment welfare effects of FTAs are favourable for its members, ranging between $0$ and $0.55$ percent, and slightly negative or null for non-member countries. In our model, an increase of $0.55\%$ over Chile's GDP comes from the FTAs.
+
+The decomposition of the Full Endowment GE effects reported in columns IV, V, and VI suggests that both consumers and producers in member countries of the FTAs face positive effects with lower inward multilateral resistances (for consumers) and lower outward multilateral resistances, which translate into higher factory-gate prices (for producers) relative to the effects on the consumers in the reference country (i.e., Germany for the current case).
+
+# Codes
+
+All the codes for the simulation are available at https://github.com/pachadotdev/general-equilibrium-ftas-chile.
+
+# References
+
+Mas-Colell, A., Whinston, M. D., & Green, J. R. (1995). *Microeconomic theory*. New York: Oxford university press.
+
+Silva, J. S., & Tenreyro, S. (2006). *The log of gravity*. The Review of Economics and Statistics, 88(4), 641-658.
+
+Yotov, Y. V., Piermartini, R., & Larch, M. (2016). *An Advanced Guide to Trade Policy Analysis​: The Structural Gravity Model*. WTO iLibrary.
+
+Anderson, J. E., & Yotov, Y. V. (2016). *Terms of trade and global efficiency effects of free trade agreements, 1990–2002*. Journal of International Economics, 99, 279-298.
+
+Larch, M. & Yotov, Y. V. (2016). *General Equilibrium Trade Policy Analysis with Structural Gravity*/ CESifo Working Paper, No. 6020, Center for Economic Studies and ifo Institute (CESifo), Munich.
+
+Vargas, M (2021). *Solutions Manual for An Advanced Guide to Trade Policy Analysis in R*. UN ESCAP 
+Trade, Investment & Innovation.
+
+United Nations (2022). *The United Nations Commodity Trade Statistics Database*. URL: http://comtrade.un.org/.
