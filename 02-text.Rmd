@@ -1,7 +1,7 @@
 ---
-title: "[DRAFT, NOT PEER-REVIEWED] The Impact of Regional Trade Agreements: The Hypothetical Scenario of Removing Free Trade Agreements Chile-USA and Chile-China"
+title: "[DRAFT, NOT PEER-REVIEWED] The Impact of Free Trade Agreements: The Hypothetical Scenario of Removing Free Trade Agreements Chile-USA and Chile-China"
 author: "Mauricio Vargas Sepulveda"
-date: '2022-07-19'
+date: '2022-07-20'
 output: pdf_document
 header-includes:
    - \usepackage[type={CC}, modifier={by-nc-sa}, version={4.0}]{doclicense}
@@ -32,7 +32,7 @@ The article shows two estimation methods that reveal the positive effect of the 
 
 # Introduction
 
-This work proposes an econometric experiment to investigate the general equilibrium effects of Regional Trade Agreements (FTAs), particularly the effects of the Chile-China and Chile-USA FTAs. The main reference for the steps discussed here is Yotov, Piermartini and Larch (2016).
+This work proposes an econometric experiment to investigate the general equilibrium effects of FTAs, particularly the effects of the Chile-China and Chile-USA FTAs. The main reference for the steps discussed here is Yotov, Piermartini and Larch (2016).
 
 The choice of these agreements is because China and the USA are the No. 1 and No. 2 trading partners with Chile, according to the most recent United Nations trade data for 2021 (United Nations, 2022).
  
@@ -40,7 +40,9 @@ Focusing on these FTAs, whose effects are misunderstood in public opinion, prima
 
 This econometric experiment relies on panel data to identify the effects of FTAs and capture the impact of trade costs by using paired fixed effects (Yotov, Piermartini and Larch, 2016). The application implements a two-stage procedure (Anderson and Yotov, 2016) to recover missing bilateral trade costs.
 
-This work proposes a solution to a General Equilibrium problem, which considers the interaction of different market forces similar to the case of multiple degrees of freedom spring-mass-damper system (Mas-Colell, Whinston and Green, 1995). The essential ingredient to solve this system is the Poisson Pseudo Maximum Likelihood estimation (PPML) (Silva and Tenreyro, 2006), implemented as a constrained regression with an external trade cost vector.
+This work solves a General Equilibrium problem, which considers the interaction of different market forces similar to the case of multiple degrees of freedom spring-mass-damper system (Mas-Colell, Whinston and Green, 1995).
+
+The essential ingredient to solve this system is the Poisson Pseudo Maximum Likelihood estimation (Silva and Tenreyro, 2006), implemented as a constrained regression with an external trade cost vector, resulting in General Equilibrium PPML.
 
 # Estimating the Impact of FTAs
 
@@ -56,28 +58,28 @@ Following the recommendations in Yotov, Piermartini and Larch (2016), this speci
 
 Pair fixed effects ($\mu_{ij}$) are included to alleviate potential endogeneity concerns of the FTA variable and to control for time-invariant trade costs at the bilateral level.
 
-Here we evaluate the hypothetical scenario of removing FTAs after they entered into force in 2004 (USA) and 2007 (China).
+Here we evaluate the hypothetical scenario of removing FTAs after they entered into force in 2004 (USA) and 2006 (China).
 
 ## Step I: Solve the baseline gravity model
 
-The first step of the GEPPML procedure requires estimating the baseline gravity model $(1)$ to obtain point estimates of the effect of FTAs and the pair fixed effects and constructing the bilateral trade costs matrix required to compute the baseline indexes of interest. 
+We need to estimate the baseline gravity model $(1)$ to obtain point estimates of the effect of FTAs and the pair fixed effects and constructing the bilateral trade costs matrix required to compute the baseline indexes of interest. 
 
-It may be essential to construct the complete matrix of bilateral trade costs in order to perform sound counterfactual analysis, but it's often not possible to identify the complete set of pair fixed effects estimates in the gravity model when trade flows data are missing (or zero) for a given pair of countries in the period under investigation. 
+It would be ideal to construct the complete matrix of bilateral trade costs in order to perform sound counterfactual analysis, but it's often not possible to identify the complete set of pair fixed effects estimates in the gravity model when trade flows data are missing (or zero) for a given pair of countries in the period under investigation. 
 
 Following Anderson and Yotov (2016), the two-stage procedure is implemented in order to recover the complete set of bilateral trade costs.
 
-We keep the panel dimension of the dataset to identify the effects of FTAs and comprehensively capture the impact of all time-invariant trade costs with the use of pair fixed effects (Vargas 2021).
+We keep the panel dimension of the dataset to identify the effects of FTAs and comprehensively capture the impact of all time-invariant trade costs with the use of pair fixed effects (Vargas, 2021).
 
 ### Stage 1: Obtain the estimates of pair fixed effects and the effects of FTAs
 
-For estimation purposes, the panel shall contain the years 2004 to 2019 in intervals of three years.
+For estimation purposes, the panel shall contain the years 1990 to 2006 in intervals of four years.
 
 The first stage consists of estimating equation $(1)$ in order to obtain the estimates of the bilateral fixed effects for country-pairs with non-missing (or non-zero) trade flows:
 
 $$
 X_{ij,t} = \exp\left[0.41 FTA_{ij,t} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t} + \hat{\mu}_{ij}\right]. \quad (2)
 $$
-The estimate of $\beta_1$ implies that, on average, the FTAs have led to about $[\exp(\hat{\beta_1}) - 1] \times 100 = [\exp(0.41 - 1] \times 100 \approx 51$ percent increase in trade among members, whose associated standard error equal to 0.09.
+The estimate of $\beta_1$ implies that, on average, the FTAs have led to $[\exp(\hat{\beta_1}) - 1] \times 100 \approx [\exp(0.41 - 1] \times 100 \approx 51$ percent increase in trade among members.
 
 ### Stage 2: Regress the estimates of pair fixed effects on gravity variables and country fixed effects
 
@@ -95,11 +97,11 @@ A similar constrained estimation procedure should be performed when the trade co
 
 ## Step II: Define a counterfactual scenario
 
-The second step of the GEPPML procedure requires defining the hypothetical removal of the USA and China FTAs with Chile. By re-defining the FTA dummy variable, $FTA^{CFL}_{ij,t}$, as if FTAs were not in place by setting the original FTA indicator variable to be equal to zero for trade between Chile and the USA after 2004 and Chile and China after 2007.
+We need to define the hypothetical removal of the USA and China FTAs with Chile. By re-defining the FTA dummy variable, $FTA^{CFL}_{ij,t}$, as if FTAs were not in place by setting the original FTA indicator variable to be equal to zero for trade between Chile and the USA after 2004 and Chile and China after 2006.
 
 ## Step III: Solve the counterfactual model
 
-The third stage of the GEPPML procedure consists of constructing the counterfactual indexes of interest in the Conditional GE and the Full Endowment GE scenarios of removing the abovementioned FTAs.
+We need to construct the counterfactual indexes of interest in the Conditional GE and the Full Endowment GE scenarios of removing the abovementioned FTAs.
 
 The Conditional GE effects from the removal of the FTAs above are computed by re-estimating the econometric gravity specification $(1)$ for 2004 and 2007, the year of entry into force of the agreements, subject to constraints reflecting the counterfactual scenario:
 
@@ -119,9 +121,9 @@ country in the sample.
 
 # Simulation results 
 
-Despite some specifications and data limitations, the results presented and discussed above are comparable with findings from existing related studies.
+Despite some specifications and data limitations, the results presented and discussed above are comparable with findings from existing related studies. GEPPML produces a theoretically sound model.
 
-**Table 1: Conditional GE (CGE) and Full Endownment GE (FGE) simulation results**
+**Table 1: Conditional GE and Full Endownment GE simulation results**
 
 | Exporter| CGE \newline $\%\Delta$ Trade  | FGE \newline $\%\Delta$ Trade | FGE \newline $\%\Delta$ rGDP | FGE \newline $\%\Delta$ IMR  | FGE \newline $\%\Delta$ OMR  | FGE \newline $\%\Delta$ rGDP |
 |:--------|-------------:|--------------:|----------------:|---------------:|---------------:|---------------:|
@@ -197,11 +199,23 @@ Despite some specifications and data limitations, the results presented and disc
 
 # Concluding remarks
 
-Column I of Table 1 reveals that, under the conditional general equilibrium scenario, the member countries of the FTAs above experience the largest export increase, ranging from $0.09$ (China) to $9.30$ (Chile), percent of their total exports. Conditional effects, unlike direct (or partial) effects, account for trade diversion and direct effects are often an upper bound for our estimation (Yotov, Piermartini and Larch, 2016). Part of the increase in trade with member countries comes at the expense of trade with non-members because of fixed productive factors in the short run. Trade diversion also explains why the Conditional GE effects on non-FTA countries' exports are adverse, albeit small (less than 0.5 percent for all countries). Non-member countries facing the most significant conditional decrease in exports appear to be geographically close to the three economies, while the countries experiencing the most negligible conditional effect tend to be countries with weak trade ties, at least to Chile, China and the USA.
+Column I of Table 1 reveals that, under the conditional general equilibrium scenario, the member countries of the FTAs above experience the largest export increase, ranging from $0.09$ (China) to $9.30$ (Chile), percent of their total exports.
 
-Column II of Table 1 reveals that the values of the Full Endowment general equilibrium effects of the FTAs above on exports are qualitatively identical to the corresponding conditional equilibrium effects, despite some quantitative differences. First, the Full Endowment GE effects on the FTA members are slightly larger (i.e. $9.87\%$ versus $9.30\%$ for Chile) suggesting that part of the decrease in bilateral trade costs due to the creation of the FTAs translates into additional gains for the producers in the member countries who enjoy higher producer prices. In most cases, the increase in the size of FTA members mitigates the adverse effects on non-members' exports.
+Conditional effects, unlike direct (or partial) effects, account for trade diversion and direct effects are often an upper bound for our estimation (Yotov, Piermartini and Larch, 2016). Part of the increase in trade with member countries comes at the expense of trade with non-members because of fixed productive factors in the short run.
 
-Column III of Table 1, the counterfactual analysis, suggests that the Full Endowment welfare effects of FTAs are favourable for its members, ranging between $0$ and $0.55$ percent, and slightly negative or null for non-member countries. In our model, an increase of $0.55\%$ over Chile's GDP comes from the FTAs.
+Trade diversion also explains why the Conditional GE effects on non-FTA countries' exports are adverse, albeit small (less than 0.5 percent for all countries).
+
+Non-member countries facing the most significant conditional decrease in exports appear to be geographically close to the three economies, while the countries experiencing the most negligible conditional effect tend to be countries with weak trade ties, at least to Chile, China and the USA.
+
+Column II of Table 1 reveals that the values of the Full Endowment general equilibrium effects of the FTAs above on exports are qualitatively identical to the corresponding conditional equilibrium effects, despite some quantitative differences.
+
+The Full Endowment GE effects on the FTA members are slightly larger (i.e., $9.87\%$ versus $9.30\%$ for Chile) suggesting that part of the decrease in bilateral trade costs due to the creation of the FTAs translates into additional gains for the producers in the member countries who enjoy higher producer prices.
+
+In most cases, the increase in the size of FTA members mitigates the adverse effects on non-members' exports.
+
+Column III of Table 1, the counterfactual analysis, suggests that the Full Endowment welfare effects of FTAs are favourable for its members, ranging between $0$ and $0.55$ percent, and slightly negative or null for non-member countries.
+
+In our model, an increase of $0.55\%$ over Chile's GDP comes from the FTAs, which means Chile's welfare improved after the FTAs.
 
 The decomposition of the Full Endowment GE effects reported in columns IV, V, and VI suggests that both consumers and producers in member countries of the FTAs face positive effects with lower inward multilateral resistances (for consumers) and lower outward multilateral resistances, which translate into higher factory-gate prices (for producers) relative to the effects on the consumers in the reference country (i.e., Germany for the current case).
 
@@ -215,11 +229,11 @@ Mas-Colell, A., Whinston, M. D., & Green, J. R. (1995). *Microeconomic theory*. 
 
 Silva, J. S., & Tenreyro, S. (2006). *The log of gravity*. The Review of Economics and Statistics, 88(4), 641-658.
 
-Yotov, Y. V., Piermartini, R., & Larch, M. (2016). *An Advanced Guide to Trade Policy Analysis​: The Structural Gravity Model*. WTO iLibrary.
+Yotov, Y. V., Piermartini, R., & Larch, M. (2016). *An Advanced Guide to Trade Policy Analysis: The Structural Gravity Model*. WTO iLibrary.
 
 Anderson, J. E., & Yotov, Y. V. (2016). *Terms of trade and global efficiency effects of free trade agreements, 1990–2002*. Journal of International Economics, 99, 279-298.
 
-Larch, M. & Yotov, Y. V. (2016). *General Equilibrium Trade Policy Analysis with Structural Gravity*/ CESifo Working Paper, No. 6020, Center for Economic Studies and ifo Institute (CESifo), Munich.
+Larch, M. & Yotov, Y. V. (2016). *General Equilibrium Trade Policy Analysis with Structural Gravity*. CESifo Working Paper, No. 6020, Center for Economic Studies and ifo Institute (CESifo), Munich.
 
 Vargas, M (2021). *Solutions Manual for An Advanced Guide to Trade Policy Analysis in R*. UN ESCAP 
 Trade, Investment & Innovation.
