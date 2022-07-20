@@ -1,0 +1,87 @@
+\documentclass[$fontsize$]{article}
+
+\usepackage[protrusion=true,expansion=true]{microtype}
+
+\usepackage{tex/widetext}
+\usepackage[timestamp]{tex/varsitybluesnotes}
+\usepackage{rotating}
+\usepackage[colorlinks]{hyperref}
+\usepackage{makeidx}
+\usepackage{framed}
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{colorlinks = true, allcolors = blue}
+\usepackage{float}
+\usepackage{flafter}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+
+\usepackage{hyperxmp}
+\usepackage[type={CC}, modifier={by-nc-sa}, version={4.0}]{doclicense}
+\usepackage{sansmath}
+\renewcommand{\familydefault}{\sfdefault}
+\sansmath
+
+$if(amsmath)$
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{amsthm}
+$endif$
+
+$if(linespacing)$
+  \usepackage{setspace}
+  \setstretch{$linespacing$}
+$endif$
+
+% texlive 2020
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}[2]
+  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}
+  {\par}
+$endif$
+
+\makeindex
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% To pass between YAML and LaTeX the dollar signs are added by CII
+% Syntax highlighting #22
+$if(highlighting-macros)$
+  $highlighting-macros$
+$endif$
+
+\author{$author$}
+\title{$title$}
+\date{$date$}
+
+\setlength\parindent{0pt}
+\setlength\parskip{2pt}
+
+% Change the university
+\newcommand{\university}{$university$}
+% Change the department
+\newcommand{\department}{$department$}
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty}
+\doclicenseThis
+\LARGE{Draft document, NOT peer-reviewed}\normalsize
+\tableofcontents
+\setcounter{page}{0}
+\clearpage
+
+$body$
+
+% Index?
+% \printindex
+
+\end{document}

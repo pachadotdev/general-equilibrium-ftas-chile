@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {1}Abstract}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Purpose}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Approach}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Findings}{1}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Introduction}{1}{section.2}%
+\contentsline {section}{\numberline {3}Estimating the Impact of FTAs}{1}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Step I: Solve the baseline gravity model}{2}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Stage 1: Obtain the estimates of pair fixed effects and the effects of FTAs}{2}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Stage 2: Regress the estimates of pair fixed effects on gravity variables and country fixed effects}{2}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Step II: Define a counterfactual scenario}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Step III: Solve the counterfactual model}{3}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Step IV: Collect, construct, and report indexes of interest}{3}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Simulation results}{3}{section.4}%
+\contentsline {section}{\numberline {5}Concluding remarks}{5}{section.5}%
+\contentsline {section}{\numberline {6}Codes}{6}{section.6}%
+\contentsline {section}{References}{6}{section*.2}%

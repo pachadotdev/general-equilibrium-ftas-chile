@@ -369,4 +369,7 @@ indexes_final <- indexes_final %>%
 
 indexes_final
 
-kable(indexes_final)
+kable(indexes_final, format = "latex",
+      caption = "Conditional GE and Full Endownment GE simulation results",
+      booktabs = T,
+      longtable = T)

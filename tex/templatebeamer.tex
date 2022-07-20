@@ -1,0 +1,65 @@
+\documentclass[aspectratio=169]{beamer}
+\definecolor{myblue}{RGB}{0,42,92}
+\usetheme[progressbar=frametitle]{metropolis}
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\setbeamercolor{background canvas}{bg=white}
+
+%\usecolortheme[named=myblue]{structure}
+\setbeamercolor{frametitle}{bg=myblue}
+
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage[timestamp]{../tex/varsitybluesnotes}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+
+$if(amsmath)$
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{amsthm}
+$endif$
+
+% texlive 2020
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}[2]
+  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}
+  {\par}
+$endif$
+
+\makeindex
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% To pass between YAML and LaTeX the dollar signs are added by CII
+% Syntax highlighting #22
+$if(highlighting-macros)$
+  $highlighting-macros$
+$endif$
+
+\author{$author$}
+\title{$title$}
+
+\makeindex
+
+\pretocmd{\tableofcontents}{\begin{minipage}{\textwidth}}{}{}
+\apptocmd{\tableofcontents}{\end{minipage}}{}{}
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+$body$
+
+\end{document}
