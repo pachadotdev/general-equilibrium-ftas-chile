@@ -6,7 +6,7 @@ output:
     latex_engine: pdflatex
     template: tex/template.tex
     highlight: tango
-    keep_tex: yes
+    keep_tex: no
 bibliography: bib/references.bib
 fontsize: 10pt
 linespacing: 1.0
