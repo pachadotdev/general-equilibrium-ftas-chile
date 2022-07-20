@@ -85,7 +85,7 @@ The estimate of $\beta_1$ implies that, on average, the FTAs have led to $[\exp(
 
 ### Stage 2: Regress the estimates of pair fixed effects on gravity variables and country fixed effects
 
-The second stage involves using the estimates of the pair fixed effects ($\mu_{ij}$) from equation \eqref{eq:2} as the dependent variable in a regression where the covariates include the set of standard gravity variables along with importer and exporter fixed effects [@larch2016general]:
+We use the estimates of the pair fixed effects ($\mu_{ij}$) from equation \eqref{eq:2} as the dependent variable in a regression where the covariates include the set of standard gravity variables along with importer and exporter fixed effects [@larch2016general]:
 
 \begin{equation}
 t_{ij}^{1-\sigma} = \exp[\mu_{ij}] = \exp\left[\beta_1 DIST_{ij} + \beta_2 CNTG_{ij} + \beta_3 LANG_{ij} + \beta_3 CLNY_{ij} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t}\right]. \label{eq:3}
