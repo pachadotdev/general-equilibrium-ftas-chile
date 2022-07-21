@@ -78,8 +78,34 @@ For estimation purposes, the panel shall contain the years 1990 to 2006 in inter
 The first stage consists of estimating equation \eqref{eq:1} in order to obtain the estimates of the bilateral fixed effects for country-pairs with non-missing (or non-zero) trade flows:
 
 \begin{equation}
-X_{ij,t} = \exp\left[0.41 FTA_{ij,t} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t} + \hat{\mu}_{ij}\right].\label{eq:2}
+X_{ij,t} = \exp\left[0.41 \text{FTA}_{ij,t} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t} + \hat{\mu}_{ij}\right].\label{eq:2}
 \end{equation}
+
+\begin{longtable}[t]{lc}
+   \caption{Stage I model summary}\\
+   \toprule
+   Dependent Variable: & Trade ($X_{ij,t}$)\\  
+   Model:              & \label{eq:1}\\  
+   \midrule
+   \emph{Variables}\\
+   FTA                 & 0.4119$^{***}$\\   
+                       & (0.0996)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   Exporter-year ($\pi_{i,t}$)           & Yes\\  
+   Importer-year ($\chi_{j,t}$)           & Yes\\  
+   Pair ($\mu_{i,j}$)           & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations        & 23,725\\  
+   Squared Correlation & 0.99894\\  
+   Pseudo R$^2$        & 0.99697\\  
+   BIC                 & 2,289,600.3\\  
+   \bottomrule
+   % \multicolumn{2}{l}{\emph{Clustered (exp\_year) standard-errors in parentheses}}\\
+   \multicolumn{2}{l}{\emph{Clustered (Exporter-year) standard-errors in parentheses}}\\
+   \multicolumn{2}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{longtable}
 
 The estimate of $\beta_1$ implies that, on average, the FTAs have led to $[\exp(\hat{\beta_1}) - 1] \times 100 \approx [\exp(0.41 - 1] \times 100 \approx 51$ percent increase in trade among members.
 
@@ -88,8 +114,37 @@ The estimate of $\beta_1$ implies that, on average, the FTAs have led to $[\exp(
 We use the estimates of the pair fixed effects ($\mu_{ij}$) from equation \eqref{eq:2} as the dependent variable in a regression where the covariates include the set of standard gravity variables along with importer and exporter fixed effects [@larch2016general]:
 
 \begin{equation}
-t_{ij}^{1-\sigma} = \exp[\mu_{ij}] = \exp\left[\beta_1 DIST_{ij} + \beta_2 CNTG_{ij} + \beta_3 LANG_{ij} + \beta_3 CLNY_{ij} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t}\right]. \label{eq:3}
+t_{ij}^{1-\sigma} = \exp[\mu_{ij}] = \exp\left[\beta_1 \log(\text{DIST}_{ij}) + \beta_2 \text{CNTG}_{ij} + \beta_3 \text{LANG}_{ij} + \beta_3 \text{CLNY}_{ij} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t}\right]. \label{eq:3}
 \end{equation}
+
+\begin{longtable}[t]{lc}
+   \toprule
+   Dependent Variable: & Trade costs ($\bar{t}_{i,j}$)\\   
+   Model:              & \eqref{eq:3}\\  
+   \midrule
+   \emph{Variables}\\
+   Distance ($\log(\text{DIST}_{ij})$)           & -0.8658$^{***}$\\   
+                       & (0.0427)\\   
+   Contiguity ($\text{CNTG}_{ij}$)                & 0.3057$^{***}$\\   
+                       & (0.0887)\\   
+   Language ($\text{LANG}_{ij}$)                & 0.3453$^{***}$\\   
+                       & (0.0802)\\   
+   Colony ($\text{CLNY}_{ij}$)                & 0.2220$^{**}$\\   
+                       & (0.1006)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   Exporter ($\pi_{i,t}$)           & Yes\\  
+   Importer ($\chi_{j,t}$)           & Yes\\ 
+   \midrule
+   \emph{Fit statistics}\\
+   Observations        & 4,676\\  
+   Squared Correlation & 0.86061\\  
+   Pseudo R$^2$        & 0.77227\\  
+   BIC                 & 19,108.4\\  
+   \bottomrule
+   \multicolumn{2}{l}{\emph{Clustered (exporter) standard-errors in parentheses}}\\
+   \multicolumn{2}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{longtable}
 
 The predictions from regression \eqref{eq:3} are used to fill in the missing trade cost values in order
 to obtain the complete set of bilateral trade costs $\hat{t}_{ij}^{1-\sigma}$.
@@ -118,10 +173,11 @@ The PPML estimates of the directional effects from equation \eqref{eq:4} can be 
 
 The values of the Full Endowment GE effects of the removal of the FTAs are directly obtained by implementing an iterative procedure, which sequentially allows for endogenous factory-gate prices, followed by income, expenditure and trade to adjust to the counterfactual shock.
 
-## Step IV: Collect, construct, and report indexes of interest
+Note that solving \label{eq:4} requires re-estimating the counterfactual model in a loop where $p_i$, $p_j$ and $y$ variables from the Full Endowment change until convergence is reached. The same can be done by explicitly solving the GE non-linear system with any fixed point arithmetic routine.
 
-Table 1 reports the results of the counterfactual analysis, including the percentage difference between the baseline values and their Full Endowment counterparts of the main variables of interest for each
-country in the sample.
+For this particular case, we define the maximum price difference from iteration $m-1$ to $m$ as $d = |\max(\Delta p_i^{m} - \Delta p_i^{m-1})|$. When $d \leq 10^{-3}$ and the standard deviation of the price difference vector, $s = \Delta p^{m} - \Delta p^{m-1}$, is such that $s \leq 10^{-3}$, we claim convergence is reached.
+
+In the next section we report the results of the counterfactual analysis, including the percentage difference between the baseline values and their Full Endowment counterparts of the main variables of interest for each country in the sample.
 
 # Simulation results 
 

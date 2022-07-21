@@ -2,6 +2,7 @@ library(tradepolicy)
 library(fixest)
 library(dplyr)
 library(knitr)
+library(broom)
 
 trade <- tradepolicy::agtpa_applications %>% 
   rename(fta = rta) %>% 
@@ -54,6 +55,19 @@ fit_baseline <- fepois(
 
 fit_baseline
 
+options(scipen = 999)
+
+# kable(tidy(fit_baseline) %>% 
+#         mutate_if(is.numeric, function(x) round(x,5)),
+#       format = "latex", booktabs = T, longtable = T,
+#       caption = "Stage I model summary, part I")
+# 
+# kable(glance(fit_baseline) %>% 
+#         select(pseudo.r.squared, nobs:logLik) %>% 
+#         mutate_if(is.numeric, function(x) round(x,5)),
+#       format = "latex", booktabs = T, longtable = T,
+#       caption = "Stage I model summary, part II")
+
 (exp(fit_baseline$coefficients) - 1) * 100
 
 trade2 <- trade2 %>%
@@ -88,6 +102,8 @@ fit_costs <- fepois(
 )
 
 fit_costs
+
+etable(fit_costs, tex = T)
 
 trade2_2006 <- trade2_2006 %>%
   mutate(tij_no_fta = predict(fit_costs, trade2_2006)) %>%
@@ -126,6 +142,19 @@ trade2 <- trade2 %>%
     omr_bln = y * e_r/ exp(fe_exporter_cns),
     imr_bln = e / (exp(fe_importer_cns) * e_r)
   )
+
+# kable(tidy(fit_constrained) %>% 
+#         mutate_if(is.numeric, function(x) round(x,5)),
+#       format = "latex", booktabs = T, longtable = T,
+#       caption = "Stage I model summary, part I")
+# 
+# kable(glance(fit_baseline) %>% 
+#         select(pseudo.r.squared, nobs:logLik) %>% 
+#         mutate_if(is.numeric, function(x) round(x,5)),
+#       format = "latex", booktabs = T, longtable = T,
+#       caption = "Stage I model summary, part II")
+
+etable(fit_baseline, tex = T)
 
 # step 2 ----
 
