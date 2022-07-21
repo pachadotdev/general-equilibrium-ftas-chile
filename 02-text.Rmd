@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Purpose
 
-The purpose of this post is to offer the author's view about the benefits of subscribing Trade Agreements such as TPP-11. 
+The purpose of this post is to offer the author's view about the benefits of subscribing new Free Trade Agreements such as CTPP (i.e., widely known as TPP-11), based on the observed effects of already subscribed FTAs.
 
 ## Approach
 
@@ -297,6 +297,8 @@ Column III of Table 1, the counterfactual analysis, suggests that the Full Endow
 In our model, an increase of $0.55\%$ over Chile's GDP comes from the FTAs, which means Chile's welfare improved after the FTAs.
 
 The decomposition of the Full Endowment GE effects reported in columns IV, V, and VI suggests that both consumers and producers in member countries of the FTAs face positive effects with lower inward multilateral resistances (for consumers) and lower outward multilateral resistances, which translate into higher factory-gate prices (for producers) relative to the effects on the consumers in the reference country (i.e., Germany for the current case).
+
+Therefore, subscribing new FTAs that go in the same direction as the Chile-USA and Chile-China FTAs, to explore potential markets in Asia Pacific, would be beneficial.
 
 # Codes
 
