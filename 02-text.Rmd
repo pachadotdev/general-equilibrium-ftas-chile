@@ -102,8 +102,7 @@ X_{ij,t} = \exp\left[0.41 \text{FTA}_{ij,t} + \hat{\pi}_{i,t} + \hat{\chi}_{j,t}
    Pseudo R$^2$        & 0.99697\\  
    BIC                 & 2,289,600.3\\  
    \bottomrule
-   % \multicolumn{2}{l}{\emph{Clustered (exp\_year) standard-errors in parentheses}}\\
-   \multicolumn{2}{l}{\emph{Clustered (Exporter-year) standard-errors in parentheses}}\\
+   \multicolumn{2}{l}{\emph{Clustered standard-errors in parentheses}}\\
    \multicolumn{2}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
 \end{longtable}
 
@@ -142,7 +141,7 @@ t_{ij}^{1-\sigma} = \exp[\mu_{ij}] = \exp\left[\beta_1 \log(\text{DIST}_{ij}) + 
    Pseudo R$^2$        & 0.77227\\  
    BIC                 & 19,108.4\\  
    \bottomrule
-   \multicolumn{2}{l}{\emph{Clustered (exporter) standard-errors in parentheses}}\\
+   \multicolumn{2}{l}{\emph{Clustered standard-errors in parentheses}}\\
    \multicolumn{2}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
 \end{longtable}
 
