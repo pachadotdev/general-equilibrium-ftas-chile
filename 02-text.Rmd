@@ -174,7 +174,7 @@ The values of the Full Endowment GE effects of the removal of the FTAs are direc
 
 Note that solving \label{eq:4} requires re-estimating the counterfactual model in a loop where $p_i$, $p_j$ and $y$ variables from the Full Endowment change until convergence is reached. The same can be done by explicitly solving the GE non-linear system with any fixed point arithmetic routine.
 
-For this particular case, we define the maximum price difference from iteration $m-1$ to $m$ as $d = |\max(\Delta p_i^{m} - \Delta p_i^{m-1})|$. When $d \leq 10^{-3}$ and the standard deviation of the price difference vector, $s = \Delta p^{m} - \Delta p^{m-1}$, is such that $s \leq 10^{-3}$, we claim convergence is reached.
+For this particular case, we define the maximum price difference from iteration $m-1$ to $m$ as $d = |\max(\Delta p_i^{m} - \Delta p_i^{m-1})|$. When $d \leq 10^{-3}$ and the standard deviation of the price difference vector, $s = \Delta p^{m} - \Delta p^{m-1}$, is such that $\text{sd}(s) \leq 10^{-3}$, we claim convergence is reached.
 
 In the next section we report the results of the counterfactual analysis, including the percentage difference between the baseline values and their Full Endowment counterparts of the main variables of interest for each country in the sample.
 
